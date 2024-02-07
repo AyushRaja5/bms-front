@@ -1,0 +1,38 @@
+<div *ngIf="bookDetails" class="p-3 border rounded bg-light-blue shadow">
+    <h2 class="mb-4">{{ bookDetails.title }}</h2>
+    <p class="mb-3">Author: {{ bookDetails.author }}</p>
+    <p class="mb-3">Description: {{ bookDetails.description }}</p>
+    <p class="mb-3">Year : {{ bookDetails.year }}</p>
+    <p class="mb-3">Book Id : {{ bookDetails._id }}</p>
+    <p class="mb-3">Created : {{ bookDetails.createdAt | date: 'medium' }}</p>
+    <p class="mb-3">Updated : {{ bookDetails.updatedAt | date: 'medium' }}</p>
+
+    <div class="d-flex justify-content-end">
+        <button class="btn btn-danger me-2" (click)="deleteBook()">Delete</button>
+        <button type="button" class="btn btn-primary" (click)="toggleEditMode()">Edit</button>
+    </div>
+</div>
+
+<form *ngIf="editMode" class="p-3 mt-5 border rounded black shadow">
+    <div class="mb-3">
+        <label for="editedTitle" class="form-label">Title</label>
+        <input type="text" class="form-control" id="editedTitle" [(ngModel)]="editedTitle" name="editedTitle" required>
+    </div>
+    <div class="mb-3">
+        <label for="editedAuthor" class="form-label">Author</label>
+        <input type="text" class="form-control" id="editedAuthor" [(ngModel)]="editedAuthor" name="editedAuthor" required>
+    </div>
+    <div class="mb-3">
+        <label for="editedDescription" class="form-label">Description</label>
+        <textarea class="form-control" id="editedDescription" [(ngModel)]="editedDescription" name="editedDescription" required></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="editedYear" class="form-label">Year</label>
+        <input type="string" class="form-control" id="editedYear" [(ngModel)]="editedYear" name="editedYear" required>
+    </div>
+    <div class="d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-success mr-3" (click)="updateBook()">Update</button>
+        <button type="button" class="btn btn-secondary" (click)="toggleEditMode()">Cancel</button>
+    </div>
+</form>
+
